@@ -1,5 +1,13 @@
+import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
+
 public class AirlineSystem {
 
+    Scanner scanner = new Scanner(System.in);
+    Map<String, String> userCredentials = new HashMap<>();
+
+    // Our Origin or our Starting point for our tour
     class Origin {
         String[] origins = {"Mumbai", "Delhi", "Kolkata", "Bangalore", "Prayagraj", "Kanpur"};
 
@@ -10,7 +18,7 @@ public class AirlineSystem {
             }
         }
     }
-
+    // Destination for our tour
     class Destination {
         String[] destinations = {"Mumbai", "Delhi", "Kolkata", "Bangalore", "Prayagraj", "Kanpur"};
 
@@ -22,7 +30,8 @@ public class AirlineSystem {
         }
     }
 
-    class Customer {
+    // Creating our customer Details
+     class Customer {
         String userName;
         String passWord;
         String name;
@@ -41,15 +50,39 @@ public class AirlineSystem {
             this.destination = destination;
             this.origin = origin;
             this.price=price;
+            // HashMap Enters here
+            userCredentials.put(userName,passWord);
         }
-
+        // Login Details Starts Here
+        public void loginDetails(){
+            while(true){
+                System.out.println("Enter Your Username : ");
+                String  Username = scanner.next();
+                // Checking for username
+                if (userCredentials.containsKey(Username)){
+                    System.out.println("Enter Your Password :");
+                    String password = scanner.next();
+                    // Checking if password is correct for the specific username
+                    if (userCredentials.get(userName).equals(password)){
+                    System.out.println("Hello Mr." + name + " ,Welcome to our Airline Reservation System");
+                    break;
+                    }else{
+                    System.out.println("Wrong Password try again.......");
+                    }
+                }else {
+                    System.out.println("Wrong Username try again.....");
+                }
+            }
+        }
+        // It's just the Ending of our program don't focus on it too much
         public void displayDetails() {
             System.out.println("Hello, " + name + "! You have chosen " + origin +" as your Origin and "+ destination + " as your destination.");
             System.out.println("The price for the destination " + destination + " is: " + price);
+            
         }
 
     }
 }
 
 
-// Here are all the details of the detailed analysis of the airline system project 
+
